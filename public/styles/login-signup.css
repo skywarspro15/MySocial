@@ -1,0 +1,171 @@
+:root {
+  --bg-dark-green: 20,24,22;
+  --accent: 78, 224, 151;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 300;
+  src: url('../fonts/Roboto-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: normal;
+  src: url('../fonts/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 600;
+  src: url('../fonts/Roboto-Medium.ttf');
+}
+
+/* color: rgba(var(--accent), 0.3) */
+html, body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  height: 100%;
+  width: 100%;
+  margin:0;padding:0;
+  font-size: 14px;
+}
+
+html {
+  height: 100%;
+  background: linear-gradient(168.98deg, rgba(0, 15, 8, 0.8) 58.18%, rgba(0, 49, 25, 0.8) 115.96%), url('https://cdn.discordapp.com/attachments/1018582148506189916/1026161116910473226/IMG_0760.jpg');/*url('bg.jpg'); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+* { box-sizing: border-box; }
+
+.card {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), rgba(0, 255, 126, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(17px);
+  -webkit-backdrop-filter: blur(17px); /* iOS/macOS */
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  max-width: 450px;
+}
+.card-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .card-top {
+  margin: 0 11px;
+} */
+.card-top .header { 
+  margin-right: 10px;
+}
+
+.card-top .header {
+  max-width: 50%;
+}
+
+.card-top .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.card p, .card a {
+  margin: 0;
+}
+
+.card h1 {
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+button {
+  min-width: 75px;
+  min-height: 32px;
+  background: rgba(32, 163, 91, 0.19);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  max-height: 32px;
+  color: inherit;
+  font-family: inherit;
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+label {
+  font-size: 14px;
+}
+
+input {
+  background: rgba(81, 114, 96, 0.19);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  padding: 4px 5px;
+  font-family: inherit;
+  color: inherit;
+  cursor: text;
+}
+
+a, a:visited {
+  color: rgba(var(--accent), 1);
+}
+
+@media only screen and (max-width: 768px) {
+  
+  .card {
+    height: 80%;
+  }
+  
+  .card-item {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-top .header {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  
+}
+
+@media only screen and (max-width: 500px) {
+ .card {
+   width: 100%;
+   height: 100%;
+ }
+}
