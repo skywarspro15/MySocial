@@ -12,9 +12,7 @@ const port = 8080;
 app.use(express.static('public'))
 
 function userExists(name) {
-  let rawJSON = fs.readFileSync("users.json", "utf-8");
-  let users = JSON.parse(rawJSON);
-  if (name in users) {
+  if (fs.existsxistsSync("users/" + name + ".json")) {
     return true;
   } else {
     return false;
@@ -25,9 +23,9 @@ function authenticateUser(name, password) {
   if (!userExists(name)) {
     return "User doesn't exist";
   }
-  let rawJSON = fs.readFileSync("users.json", "utf-8");
-  let users = JSON.parse(rawJSON);
-  let res = bcrypt.compareSync(password, String(users[name]).trim());
+  let rawJSON = fs.readFileSync("users/" + name + ".json", "utf-8");
+  let user = JSON.parse(rawJSON);
+  let res = bcrypt.compareSync(password, String(user["auth"]).trim());
 
   if (res) {
     return "Authentication successful";
@@ -42,10 +40,13 @@ function addUser(name, password) {
     return "User already exists";
   }
   bcrypt.hash(password, 10, function(err, hash) {
-    let rawJSON = fs.readFileSync("users.json", "utf-8");
-    let users = JSON.parse(rawJSON);
-    users[name] = hash;
-    fs.writeFileSync('users.json', JSON.stringify(users), "utf-8");
+    let userData = {};
+    userData["auth"] = hash;
+    userData["bio"] = "No bio yet";
+    userData["followers"] = "0";
+    userData["following"] = "0";
+    userData["followList"] = [];
+    fs.writeFileSync("users/" + name + ".json", JSON.stringify(userData));
   });
   return "Successfully created account";
 }
