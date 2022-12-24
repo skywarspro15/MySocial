@@ -1,28 +1,24 @@
 const fs = require("fs");
-const dir = "users";
+const path = require("path");
+const dir = "users/";
 
 if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir);
 }
 
 function migrateOld() {
-  let rawJSON = fs.readFileSync("users.json");
-  let users = JSON.parse(rawJSON);
-
-  console.log("Starting to migrate...");
-
-  for (let user of Object.keys(users)) {
-    console.log("Migrating user: " + user);
-    let userData = {};
-    userData["auth"] = users[user];
-    userData["bio"] = "No bio yet";
-    userData["followers"] = "0";
-    userData["following"] = "0";
-    userData["followList"] = [];
-    fs.writeFileSync("users/" + user + ".json", JSON.stringify(userData));
-
-  }
-
+  fs.readdir(dir, function(err, files) {
+    files.forEach(function(file, index) {
+      curFile = path.join(dir, file);
+      var rawJSON = fs.readFileSync(curFile);
+      var userData = JSON.parse(rawJSON);
+      delete userData["followList"];
+      userData["followingList"] = [];
+      userData["followerList"] = [];
+      fs.writeFileSync(curFile, JSON.stringify(userData));
+    }
+    )
+  })
 }
 
 migrateOld();

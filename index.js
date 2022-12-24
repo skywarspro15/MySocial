@@ -45,7 +45,8 @@ function addUser(name, password) {
     userData["bio"] = "No bio yet";
     userData["followers"] = "0";
     userData["following"] = "0";
-    userData["followList"] = [];
+    userData["followerList"] = [];
+    userData["followingList"] = [];
     fs.writeFileSync("users/" + name + ".json", JSON.stringify(userData));
   });
   return "Successfully created account";
